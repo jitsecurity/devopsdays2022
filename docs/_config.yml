@@ -3,7 +3,7 @@
 
 title: DevopsDays TLV 2022 - Jit Workshop
 author: Shlomi Kushchi
-logo: logo.png
+logo: docs/logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
