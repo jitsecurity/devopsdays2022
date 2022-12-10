@@ -1,11 +1,8 @@
-# Welcome to your Jupyter Book
+# DevopsDays 2022 - Jit Workshop
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
-
-Check out the content pages bundled with this sample book to see more.
+In this workshop we are going to build our first serverless application using the serverless framework.
+We are then going to deploy it locally to localstack. <br>
+Then we'll use the Github CI platform known as Github Actions to add security tools to make sure our application is secure.
 
 ```{tableofcontents}
 ```
