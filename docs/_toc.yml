@@ -7,3 +7,4 @@ chapters:
 - file: pages/requirements
 - file: pages/serverless_framework
 - file: pages/localstack
+- file: pages/first-deploy
