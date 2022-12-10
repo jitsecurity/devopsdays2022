@@ -75,7 +75,7 @@ localstack:
     networks: #optional - attaches the list of networks to the localstack docker container after startup
       - host
       - overlay
-      - my_custom_network
+      - localstack-net
     lambda:
       # Enable this flag to improve performance
       mountCode: false  # specify either "true", or a relative path to the root Lambda mount path
