@@ -78,7 +78,7 @@ localstack:
       - my_custom_network
     lambda:
       # Enable this flag to improve performance
-      mountCode: true  # specify either "true", or a relative path to the root Lambda mount path
+      mountCode: false  # specify either "true", or a relative path to the root Lambda mount path
     docker:
       # Enable this flag to run "docker ..." commands as sudo
       sudo: False
