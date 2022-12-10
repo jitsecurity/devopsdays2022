@@ -4,6 +4,6 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: pages/requirements
+- file: pages/serverless_framework
+- file: pages/localstack
