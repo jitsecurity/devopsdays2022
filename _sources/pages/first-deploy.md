@@ -46,7 +46,8 @@ USER_NAME = "my-user"
 
 
 def get_deployment_url():
-    raw = [l.strip() for l in os.popen("sls info --stage local").readlines() if "http://" in l]
+    raw = [l.strip().split(" - ")[-1] for l in os.popen("sls info --stage local").readlines() if "http" in l]
+    raw = [l for l in raw if " " not in l]
     return raw[0]
 
 
