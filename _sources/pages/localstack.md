@@ -1,0 +1,85 @@
+
+## Localstack
+[LocalStack](https://localstack.cloud/) is a cloud service emulator that runs in a single container on your laptop or in your CI environment. With LocalStack, you can run your AWS applications or Lambdas entirely on your local machine without connecting to a remote cloud provider! Read the [Docs](https://docs.localstack.cloud/getting-started/).<br>
+Localstack provides us with a dockerfile and a [docker-compose](https://github.com/localstack/localstack/blob/master/docker-compose.yml) to run locally. let's set it up.<br>
+In a `docker-copmose.yml` let's add these 2 containers:
+* localstack
+* dynamodb-admin
+```yml
+version: '3.9'
+
+services:
+  dynamodb:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      - DYNAMO_ENDPOINT=http://localstack:4566
+    networks:
+      - localstack-net
+
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    image: localstack/localstack:1.3.0
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+      - "127.0.0.1:53:53"                # DNS config (only required for Pro)
+      - "127.0.0.1:53:53/udp"            # DNS config (only required for Pro)
+      - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway (only required for Pro)
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}  # only required for Pro
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - localstack-net
+
+networks:
+  localstack-net:
+    name: localstack-net
+
+```
+### serverless framework integration with localstack
+One last part before we can deploy our application locally is to configure our up to work with local stack.<br>
+To achieve that we will add a section to the templated `serverless.yml` file. We will use this serverless plugin - [serverless-localstack](https://github.com/localstack/serverless-localstack).<br>
+In your terminal run this command
+```bash
+npm install --save serverless@2.72.3
+npm install --save-dev serverless-localstack
+```
+You can see the added plugin in `package.json`.<br>
+<img width="387" alt="image" src="https://user-images.githubusercontent.com/81581678/205431559-4c03b320-6ece-40cf-963a-9d6af02ecf60.png">
+
+Now, let's add it to the `serverless.yml` file:<br>
+Under the plugin section:
+```yml
+plugins:
+  - serverless-wsgi
+  - serverless-python-requirements
+  - serverless-localstack
+```
+Now under the custom section add this:
+```yml
+localstack:
+    stages:
+      # list of stages for which the plugin should be enabled
+      - local
+    host: http://localhost  # optional - LocalStack host to connect to
+    edgePort: 4566  # optional - LocalStack edge port to connect to
+    autostart: true  # optional - Start LocalStack in Docker on Serverless deploy
+    networks: #optional - attaches the list of networks to the localstack docker container after startup
+      - host
+      - overlay
+      - my_custom_network
+    lambda:
+      # Enable this flag to improve performance
+      mountCode: true  # specify either "true", or a relative path to the root Lambda mount path
+    docker:
+      # Enable this flag to run "docker ..." commands as sudo
+      sudo: False
+```      
