@@ -134,6 +134,16 @@ const thebe_selector_output = ".output, .cell_output"
    Time to deploy
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DynamoDB.html">
+   Let’s see the data in DynamoDB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="github-actions.html">
+   Securing via github actions
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -428,7 +438,7 @@ Under the plugin section:</p>
     networks: #optional - attaches the list of networks to the localstack docker container after startup
       - host
       - overlay
-      - my_custom_network
+      - localstack-net
     lambda:
       # Enable this flag to improve performance
       mountCode: false  # specify either &quot;true&quot;, or a relative path to the root Lambda mount path

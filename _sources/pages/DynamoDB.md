@@ -1,0 +1,17 @@
+## Let's see the data in DynamoDB
+Inside the docker-compose there's section image called dynamodb which runs the dynamodb-admin docker image.<br> 
+A reminder:<br>
+```yml
+dynamodb:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      - DYNAMO_ENDPOINT=http://localstack:4566
+    networks:
+      - localstack-net
+
+```
+It's a UI interface to view DDB locally.<br>
+Go to : `http://localhost:8001/` <br>
+You will see the table: `users-table-local`. <br>You can now view your data.
