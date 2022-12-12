@@ -40,13 +40,24 @@ Let's create this workflow `sast.yml`<br>
 and copy this to the file:
 
 ```yml
-uses: mdegis/bandit-action@v1
-with: 
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  path: "."
-  level: high
-  confidence: high
-  exit_zero: true
+name: Test SAST Bandit action PR comment
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  kics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: mdegis/bandit-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: "."
+          level: high
+          confidence: high
+          exit_zero: true
 ```
 
 ### IaC Scaning With Kics

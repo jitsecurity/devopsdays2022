@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Let’s see the data in DynamoDB" href="DynamoDB.html" />
+    <link rel="prev" title="Upload Code To Github" href="github-integration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -141,6 +141,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="DynamoDB.html">
    Let’s see the data in DynamoDB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="github-integration.html">
+   Upload Code To Github
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -424,13 +429,24 @@ jobs:
 <h2>SAST (Static application security testing)<a class="headerlink" href="#sast-static-application-security-testing" title="Permalink to this headline">#</a></h2>
 <p>Let’s create this workflow <code class="docutils literal notranslate"><span class="pre">sast.yml</span></code><br>
 and copy this to the file:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>uses: mdegis/bandit-action@v1
-with: 
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  path: &quot;.&quot;
-  level: high
-  confidence: high
-  exit_zero: true
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>name: Test SAST Bandit action PR comment
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  kics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: mdegis/bandit-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: &quot;.&quot;
+          level: high
+          confidence: high
+          exit_zero: true
 </pre></div>
 </div>
 </section>
@@ -488,11 +504,11 @@ jobs:
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="DynamoDB.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="github-integration.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Let’s see the data in DynamoDB</p>
+            <p class="prev-next-title">Upload Code To Github</p>
         </div>
     </a>
 </div>
