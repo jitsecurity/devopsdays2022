@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Upload Code To Github &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
+    <title>Let’s test our app &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Securing via github actions" href="09.github-actions.html" />
-    <link rel="prev" title="Let’s see the data in DynamoDB" href="07.DynamoDB.html" />
+    <link rel="next" title="Let’s see the data in DynamoDB" href="08.DynamoDB.html" />
+    <link rel="prev" title="Time to deploy" href="06.first-deploy.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -144,19 +144,14 @@ const thebe_selector_output = ".output, .cell_output"
    Time to deploy
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07.DynamoDB.html">
-   Let’s see the data in DynamoDB
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Upload Code To Github
+   Let’s test our app
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="09.github-actions.html">
-   Securing via github actions
+  <a class="reference internal" href="08.DynamoDB.html">
+   Let’s see the data in DynamoDB
   </a>
  </li>
  <li class="toctree-l1">
@@ -254,7 +249,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/08.github-integration.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/07.lets-test-our-app.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -282,7 +277,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/pages/08.github-integration.md"
+        <a href="../_sources/pages/07.lets-test-our-app.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -342,13 +337,13 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-repo">
-   Create new repo
+  <a class="reference internal nav-link" href="#local-requirements">
+   Local Requirements
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-origin">
-   Add Origin
+  <a class="reference internal nav-link" href="#run-our-client">
+   Run our client
   </a>
  </li>
 </ul>
@@ -360,7 +355,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Upload Code To Github</h1>
+                <h1>Let’s test our app</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -371,13 +366,13 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-repo">
-   Create new repo
+  <a class="reference internal nav-link" href="#local-requirements">
+   Local Requirements
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-origin">
-   Add Origin
+  <a class="reference internal nav-link" href="#run-our-client">
+   Run our client
   </a>
  </li>
 </ul>
@@ -390,24 +385,73 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="upload-code-to-github">
-<h1>Upload Code To Github<a class="headerlink" href="#upload-code-to-github" title="Permalink to this headline">#</a></h1>
-<p>Let’s upload our code to a github repository to run security controls in the Github CI.<br></p>
-<section id="create-new-repo">
-<h2>Create new repo<a class="headerlink" href="#create-new-repo" title="Permalink to this headline">#</a></h2>
-<img width="265" alt="image" src="https://user-images.githubusercontent.com/81581678/207062863-cd603ec2-ad54-4bb1-9b78-21b9ee9ae1b5.png">
-<p>and fill the details:</p>
-<img width="788" alt="image" src="https://user-images.githubusercontent.com/81581678/207063301-d723d637-d6ab-4475-ba92-8d8eb35bdfaf.png">
-<p>don’t forget to make it private and don’t add any README to it.</p>
+  <section id="let-s-test-our-app">
+<h1>Let’s test our app<a class="headerlink" href="#let-s-test-our-app" title="Permalink to this headline">#</a></h1>
+<section id="local-requirements">
+<h2>Local Requirements<a class="headerlink" href="#local-requirements" title="Permalink to this headline">#</a></h2>
+<p>Let’s generate a vritualenv
+installing with pip <br>
+<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">virtualenv</span></code> <br></p>
+<p>create a local <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/">virtualenv</a> in the project’s directory <br>
+<code class="docutils literal notranslate"><span class="pre">virtualenv</span> <span class="pre">venv</span></code><br>
+activate it:<br>
+Unix/Mac: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code> <br>
+Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scripts\activate</span></code> <br></p>
+<p>and run this command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
 </section>
-<section id="add-origin">
-<h2>Add Origin<a class="headerlink" href="#add-origin" title="Permalink to this headline">#</a></h2>
-<p>copy these details (the origin path)</p>
-<img width="1205" alt="image" src="https://user-images.githubusercontent.com/81581678/207063553-17431ae1-797e-4348-aedc-b2f1d313aeca.png">
-<p>and run in the terminal:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git remote add origin git@github.com:&lt;your-path-to-github-repo&gt;
+<section id="run-our-client">
+<h2>Run our client<a class="headerlink" href="#run-our-client" title="Permalink to this headline">#</a></h2>
+<p>create a file called <code class="docutils literal notranslate"><span class="pre">client.py</span></code> and paste this snippet to it</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
+
+<span class="n">USER_ID</span> <span class="o">=</span> <span class="s2">&quot;user-1&quot;</span>
+<span class="n">USER_NAME</span> <span class="o">=</span> <span class="s2">&quot;my-user&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">get_deployment_url</span><span class="p">():</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; - &quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;sls info --stage local&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;http&quot;</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">raw</span> <span class="k">if</span> <span class="s2">&quot; &quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">raw</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+
+<span class="n">GET_URL</span><span class="p">,</span> <span class="n">CREATE_URL</span> <span class="o">=</span> <span class="n">get_deployment_url</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">():</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;userId&quot;</span><span class="p">:</span> <span class="n">USER_ID</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">USER_NAME</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">CREATE_URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">():</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">GET_URL</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">USER_ID</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User doesn&#39;t exist&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User created: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got user from DB: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>You can use this client to interact with your app.
+It will:</p>
+<ul class="simple">
+<li><p>try to get a user from the api</p></li>
+<li><p>if the user is not present, it will create it and return it value</p></li>
+</ul>
 </section>
 </section>
 
@@ -438,17 +482,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="07.DynamoDB.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="06.first-deploy.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Let’s see the data in DynamoDB</p>
+            <p class="prev-next-title">Time to deploy</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="09.github-actions.html" title="next page">
+    <a class='right-next' id="next-link" href="08.DynamoDB.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Securing via github actions</p>
+        <p class="prev-next-title">Let’s see the data in DynamoDB</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
