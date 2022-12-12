@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: DevopsDays TLV 2022 - Jit Workshop
-author: Shlomi Kushchi
+author: Shlomi Kushchi, Jit.io
 logo: logo.png
 
 # Force re-execution of notebooks on each build.

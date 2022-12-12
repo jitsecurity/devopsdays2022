@@ -1,5 +1,4 @@
 # Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
 root: intro
@@ -7,9 +6,10 @@ chapters:
 - file: pages/01.requirements
 - file: pages/02.serverless_framework
 - file: pages/03.git-integration
-- file: pages/04.extend-our-app
-- file: pages/05.localstack
+- file: pages/04.localstack
+- file: pages/05.extend-our-app
 - file: pages/06.first-deploy
 - file: pages/07.DynamoDB
 - file: pages/08.github-integration
 - file: pages/09.github-actions
+- file: pages/troubleshooting
