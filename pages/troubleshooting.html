@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Upload Code To Github &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
+    <title>Troubleshooting &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Securing via github actions" href="09.github-actions.html" />
-    <link rel="prev" title="Let’s see the data in DynamoDB" href="07.DynamoDB.html" />
+    <link rel="prev" title="Securing via github actions" href="09.github-actions.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -149,8 +148,8 @@ const thebe_selector_output = ".output, .cell_output"
    Let’s see the data in DynamoDB
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08.github-integration.html">
    Upload Code To Github
   </a>
  </li>
@@ -159,8 +158,8 @@ const thebe_selector_output = ".output, .cell_output"
    Securing via github actions
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="troubleshooting.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Troubleshooting
   </a>
  </li>
@@ -254,7 +253,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/08.github-integration.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/troubleshooting.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -282,7 +281,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/pages/08.github-integration.md"
+        <a href="../_sources/pages/troubleshooting.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -342,13 +341,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-repo">
-   Create new repo
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-origin">
-   Add Origin
+  <a class="reference internal nav-link" href="#second-deployment-doesn-t-work">
+   Second deployment doesn’t work
   </a>
  </li>
 </ul>
@@ -360,7 +354,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Upload Code To Github</h1>
+                <h1>Troubleshooting</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -371,13 +365,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-repo">
-   Create new repo
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-origin">
-   Add Origin
+  <a class="reference internal nav-link" href="#second-deployment-doesn-t-work">
+   Second deployment doesn’t work
   </a>
  </li>
 </ul>
@@ -390,24 +379,12 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="upload-code-to-github">
-<h1>Upload Code To Github<a class="headerlink" href="#upload-code-to-github" title="Permalink to this headline">#</a></h1>
-<p>Let’s upload our code to a github repository to run security controls in the Github CI.<br></p>
-<section id="create-new-repo">
-<h2>Create new repo<a class="headerlink" href="#create-new-repo" title="Permalink to this headline">#</a></h2>
-<img width="265" alt="image" src="https://user-images.githubusercontent.com/81581678/207062863-cd603ec2-ad54-4bb1-9b78-21b9ee9ae1b5.png">
-<p>and fill the details:</p>
-<img width="788" alt="image" src="https://user-images.githubusercontent.com/81581678/207063301-d723d637-d6ab-4475-ba92-8d8eb35bdfaf.png">
-<p>don’t forget to make it private and don’t add any README to it.</p>
-</section>
-<section id="add-origin">
-<h2>Add Origin<a class="headerlink" href="#add-origin" title="Permalink to this headline">#</a></h2>
-<p>copy these details (the origin path)</p>
-<img width="1205" alt="image" src="https://user-images.githubusercontent.com/81581678/207063553-17431ae1-797e-4348-aedc-b2f1d313aeca.png">
-<p>and run in the terminal:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git remote add origin git@github.com:&lt;your-path-to-github-repo&gt;
-</pre></div>
-</div>
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">#</a></h1>
+<section id="second-deployment-doesn-t-work">
+<h2>Second deployment doesn’t work<a class="headerlink" href="#second-deployment-doesn-t-work" title="Permalink to this headline">#</a></h2>
+<p>Sometimes, especially when we change our API Gateways (our endpoints) localstack has difficulties deploying again.<br>
+An easy fix will be to restart the docker container for localstack. Don’t forget, that after a restart you need to deploy your service again.</p>
 </section>
 </section>
 
@@ -438,19 +415,12 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="07.DynamoDB.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="09.github-actions.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Let’s see the data in DynamoDB</p>
+            <p class="prev-next-title">Securing via github actions</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="09.github-actions.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Securing via github actions</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

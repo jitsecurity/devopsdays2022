@@ -130,8 +130,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="05.localstack.html">
+  <a class="reference internal" href="04.localstack.html">
    Localstack
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05.extend-our-app.html">
+   Time to write some code
   </a>
  </li>
  <li class="toctree-l1">
@@ -152,6 +157,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="09.github-actions.html">
    Securing via github actions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   Troubleshooting
   </a>
  </li>
 </ul>
@@ -331,29 +341,17 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Serverless Framework
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-the-serverless-framework-cli">
+   Installing the Serverless framework cli
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-the-serverless-framework-cli">
-     Installing the Serverless framework cli
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-our-first-app">
+     Creating our first app
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#creating-our-first-app">
-       Creating our first app
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#edit-your-serverless-function-definition">
-   Edit your serverless function definition
-  </a>
  </li>
 </ul>
 
@@ -374,29 +372,17 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Serverless Framework
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-the-serverless-framework-cli">
+   Installing the Serverless framework cli
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-the-serverless-framework-cli">
-     Installing the Serverless framework cli
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-our-first-app">
+     Creating our first app
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#creating-our-first-app">
-       Creating our first app
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#edit-your-serverless-function-definition">
-   Edit your serverless function definition
-  </a>
  </li>
 </ul>
 
@@ -419,61 +405,24 @@ Run this command:
 <section id="creating-our-first-app">
 <h3>Creating our first app<a class="headerlink" href="#creating-our-first-app" title="Permalink to this headline">#</a></h3>
 <p>We are going to use the serverless framework cli to generate our app. run this command:<br> <code class="docutils literal notranslate"><span class="pre">sls</span></code><br>
-We are going to select this template: <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">-</span> <span class="pre">Python</span> <span class="pre">-</span> <span class="pre">Flask</span> <span class="pre">API</span> <span class="pre">with</span> <span class="pre">DynamoDB</span></code>.<br>
+We are going to select this template: <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">-</span> <span class="pre">Python</span> <span class="pre">-</span> <span class="pre">HTTP</span> <span class="pre">API</span></code>.<br>
 Follow the steps in the cli:</p>
 <ul class="simple">
-<li><p>What do you want to make? AWS - Python - Flask API with DynamoDB</p></li>
+<li><p>What do you want to make? <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">-</span> <span class="pre">Python</span> <span class="pre">-</span> <span class="pre">HTTP</span> <span class="pre">API</span></code></p></li>
 <li><p>What do you want to call this project? <code class="docutils literal notranslate"><span class="pre">please</span> <span class="pre">select</span> <span class="pre">a</span> <span class="pre">short</span> <span class="pre">name.</span> <span class="pre">e.g</span> <span class="pre">my-app</span></code></p></li>
+<li><p>Do you want to deploy your project? (Y/n) <code class="docutils literal notranslate"><span class="pre">n</span></code></p></li>
 <li><p>What org do you want to add this service to? <code class="docutils literal notranslate"><span class="pre">[Skip]</span></code></p></li>
-</ul>
-<ul class="simple">
 <li><p>No AWS credentials found, what credentials do you want to use?  <code class="docutils literal notranslate"><span class="pre">[Skip]</span></code> We can skip this step since we are going to work locally.</p></li>
 </ul>
 <p>cd into your project. You will see these files in your project:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">package.json</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">app.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">handler.py</span></code></p></li>
 </ul>
 <p>Let’s go over the <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file.</p>
 </section>
 </section>
-</section>
-<section id="edit-your-serverless-function-definition">
-<h1>Edit your serverless function definition<a class="headerlink" href="#edit-your-serverless-function-definition" title="Permalink to this headline">#</a></h1>
-<p>Change this:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>functions:
-  api:
-    handler: wsgi_handler.handler
-    events:
-      - http:
-          path: /
-          method: ANY
-      - http:
-          path: /{proxy+}
-          method: ANY
-</pre></div>
-</div>
-<p>To this:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>functions:
-  api:
-    handler: wsgi_handler.handler
-    package:
-      exclude:
-        - ./**
-      include:
-        - ./app.py
-    events:
-      - http:
-          path: /
-          method: ANY
-      - http:
-          path: /{proxy+}
-          method: ANY
-</pre></div>
-</div>
-<p>It will reduce the size of your lambda to include only the required components.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -524,7 +473,7 @@ Follow the steps in the cli:</p>
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By Shlomi Kushchi<br/>
+    By Shlomi Kushchi, Jit.io<br/>
   
       &copy; Copyright 2022.<br/>
 </p>

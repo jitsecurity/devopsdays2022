@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Upload Code To Github &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
+    <title>Time to write some code &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Securing via github actions" href="09.github-actions.html" />
-    <link rel="prev" title="Let’s see the data in DynamoDB" href="07.DynamoDB.html" />
+    <link rel="next" title="Time to deploy" href="06.first-deploy.html" />
+    <link rel="prev" title="Localstack" href="04.localstack.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -134,8 +134,8 @@ const thebe_selector_output = ".output, .cell_output"
    Localstack
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="05.extend-our-app.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Time to write some code
   </a>
  </li>
@@ -149,8 +149,8 @@ const thebe_selector_output = ".output, .cell_output"
    Let’s see the data in DynamoDB
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="08.github-integration.html">
    Upload Code To Github
   </a>
  </li>
@@ -254,7 +254,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/08.github-integration.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/05.extend-our-app.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -282,7 +282,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/pages/08.github-integration.md"
+        <a href="../_sources/pages/05.extend-our-app.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -342,13 +342,23 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-repo">
-   Create new repo
+  <a class="reference internal nav-link" href="#dynamodb">
+   DynamoDB
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-origin">
-   Add Origin
+  <a class="reference internal nav-link" href="#extending-the-api">
+   Extending the API
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-requirements-file">
+   Add Requirements file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#let-s-implement-our-app">
+   Let’s implement our app
   </a>
  </li>
 </ul>
@@ -360,7 +370,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Upload Code To Github</h1>
+                <h1>Time to write some code</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -371,13 +381,23 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-repo">
-   Create new repo
+  <a class="reference internal nav-link" href="#dynamodb">
+   DynamoDB
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-origin">
-   Add Origin
+  <a class="reference internal nav-link" href="#extending-the-api">
+   Extending the API
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-requirements-file">
+   Add Requirements file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#let-s-implement-our-app">
+   Let’s implement our app
   </a>
  </li>
 </ul>
@@ -390,22 +410,120 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="upload-code-to-github">
-<h1>Upload Code To Github<a class="headerlink" href="#upload-code-to-github" title="Permalink to this headline">#</a></h1>
-<p>Let’s upload our code to a github repository to run security controls in the Github CI.<br></p>
-<section id="create-new-repo">
-<h2>Create new repo<a class="headerlink" href="#create-new-repo" title="Permalink to this headline">#</a></h2>
-<img width="265" alt="image" src="https://user-images.githubusercontent.com/81581678/207062863-cd603ec2-ad54-4bb1-9b78-21b9ee9ae1b5.png">
-<p>and fill the details:</p>
-<img width="788" alt="image" src="https://user-images.githubusercontent.com/81581678/207063301-d723d637-d6ab-4475-ba92-8d8eb35bdfaf.png">
-<p>don’t forget to make it private and don’t add any README to it.</p>
+  <section id="time-to-write-some-code">
+<h1>Time to write some code<a class="headerlink" href="#time-to-write-some-code" title="Permalink to this headline">#</a></h1>
+<p>We are going to create a simple CR(UD) application using DynamoDB, based on serverless architecture.<br>
+We are going to add a DynamoDB Cloudformation definition and 2 endpoints for <br>
+POST and GET our data from our serverless API.</p>
+<section id="dynamodb">
+<h2>DynamoDB<a class="headerlink" href="#dynamodb" title="Permalink to this headline">#</a></h2>
+<p>Add this section to your <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> at the bottom</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: Users
+</pre></div>
+</div>
 </section>
-<section id="add-origin">
-<h2>Add Origin<a class="headerlink" href="#add-origin" title="Permalink to this headline">#</a></h2>
-<p>copy these details (the origin path)</p>
-<img width="1205" alt="image" src="https://user-images.githubusercontent.com/81581678/207063553-17431ae1-797e-4348-aedc-b2f1d313aeca.png">
-<p>and run in the terminal:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git remote add origin git@github.com:&lt;your-path-to-github-repo&gt;
+<section id="extending-the-api">
+<h2>Extending the API<a class="headerlink" href="#extending-the-api" title="Permalink to this headline">#</a></h2>
+<p>Let’s change this:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /
+          method: get
+</pre></div>
+</div>
+<p>to this:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>functions:
+  get-user:
+    handler: handler.get_user
+    events:
+      - http:
+          path: /users/{user_id}
+          method: get
+  create-user:
+    handler: handler.create_user
+    events:
+      - http:
+          path: /users
+          method: post
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Bonus:</span> <span class="pre">if</span> <span class="pre">you</span> <span class="pre">have</span> <span class="pre">time,</span> <span class="pre">why</span> <span class="pre">don't</span> <span class="pre">you</span> <span class="pre">try</span> <span class="pre">to</span> <span class="pre">implement</span> <span class="pre">UPDATE</span> <span class="pre">and</span> <span class="pre">DELETE</span> <span class="pre">?</span></code></p>
+</section>
+<section id="add-requirements-file">
+<h2>Add Requirements file<a class="headerlink" href="#add-requirements-file" title="Permalink to this headline">#</a></h2>
+<p>Craete a file called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> and paste this inside</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">boto3</span><span class="o">==</span><span class="mf">1.17.64</span>
+</pre></div>
+</div>
+</section>
+<section id="let-s-implement-our-app">
+<h2>Let’s implement our app<a class="headerlink" href="#let-s-implement-our-app" title="Permalink to this headline">#</a></h2>
+<p>Edit this file: <code class="docutils literal notranslate"><span class="pre">handler.py</span></code>.<br></p>
+<p>Add the DynamoDB client:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span> 
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">USERS_TABLE</span> <span class="o">=</span> <span class="s2">&quot;Users&quot;</span>
+<span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
+    <span class="s1">&#39;dynamodb&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;us-east-1&#39;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s1">&#39;http://localstack:4566&#39;</span>
+<span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">_verify_response</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s2">&quot;Error&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HTTPStatusCode: </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;ResponseMetadata&#39;</span><span class="p">][</span><span class="s1">&#39;HTTPStatusCode&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;message=</span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+<p>And now add the api functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;pathParameters&#39;</span><span class="p">][</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">dynamodb_client</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span>
+        <span class="n">TableName</span><span class="o">=</span><span class="n">USERS_TABLE</span><span class="p">,</span> <span class="n">Key</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">}}</span>
+    <span class="p">)</span>
+    <span class="n">_verify_response</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Item&#39;</span><span class="p">)</span>
+    
+    <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;userId&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">),</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">)}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;statusCode&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">)}</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">]</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span>
+    <span class="n">user_name</span> <span class="o">=</span> <span class="n">request</span><span class="p">[</span><span class="s2">&quot;user_name&quot;</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">dynamodb_client</span><span class="o">.</span><span class="n">put_item</span><span class="p">(</span>
+        <span class="n">TableName</span><span class="o">=</span><span class="n">USERS_TABLE</span><span class="p">,</span> <span class="n">Item</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">},</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="n">user_name</span><span class="p">}}</span>
+    <span class="p">)</span>
+    <span class="n">_verify_response</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    
+    <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Successfuly added a new user!&quot;</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;statusCode&quot;</span><span class="p">:</span> <span class="mi">201</span><span class="p">,</span> <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">)}</span>
+    <span class="k">return</span> <span class="n">response</span>
+
 </pre></div>
 </div>
 </section>
@@ -438,17 +556,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="07.DynamoDB.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="04.localstack.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Let’s see the data in DynamoDB</p>
+            <p class="prev-next-title">Localstack</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="09.github-actions.html" title="next page">
+    <a class='right-next' id="next-link" href="06.first-deploy.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Securing via github actions</p>
+        <p class="prev-next-title">Time to deploy</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

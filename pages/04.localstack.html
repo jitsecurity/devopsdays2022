@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Time to deploy" href="06.first-deploy.html" />
+    <link rel="next" title="Time to write some code" href="05.extend-our-app.html" />
     <link rel="prev" title="Integration with Git" href="03.git-integration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -135,6 +135,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="05.extend-our-app.html">
+   Time to write some code
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="06.first-deploy.html">
    Time to deploy
   </a>
@@ -152,6 +157,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="09.github-actions.html">
    Securing via github actions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   Troubleshooting
   </a>
  </li>
 </ul>
@@ -244,7 +254,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/05.localstack.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/04.localstack.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -272,7 +282,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/pages/05.localstack.md"
+        <a href="../_sources/pages/04.localstack.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -336,18 +346,6 @@ title="Print to PDF"
    serverless framework integration with localstack
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-modifications-to-work-with-localstack">
-   App modifications to work with localstack
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edit-requirements-file">
-     Edit Requirements file
-    </a>
-   </li>
-  </ul>
- </li>
 </ul>
 
     </nav>
@@ -372,18 +370,6 @@ title="Print to PDF"
    serverless framework integration with localstack
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-modifications-to-work-with-localstack">
-   App modifications to work with localstack
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edit-requirements-file">
-     Edit Requirements file
-    </a>
-   </li>
-  </ul>
- </li>
 </ul>
 
                         </nav>
@@ -396,8 +382,12 @@ title="Print to PDF"
                 
   <section id="localstack">
 <h1>Localstack<a class="headerlink" href="#localstack" title="Permalink to this headline">#</a></h1>
-<p><a class="reference external" href="https://localstack.cloud/">LocalStack</a> is a cloud service emulator that runs in a single container on your laptop or in your CI environment. With LocalStack, you can run your AWS applications or Lambdas entirely on your local machine without connecting to a remote cloud provider! Read the <a class="reference external" href="https://docs.localstack.cloud/getting-started/">Docs</a>.<br>
-Localstack provides us with a dockerfile and a <a class="reference external" href="https://github.com/localstack/localstack/blob/master/docker-compose.yml">docker-compose</a> to run locally. let’s set it up.<br>
+<p><a class="reference external" href="https://localstack.cloud/">LocalStack</a> is a cloud service emulator that runs in a single container on your laptop or in
+your CI environment. With LocalStack, you can run your AWS applications or Lambdas entirely on your local machine
+without connecting to a remote cloud provider! Read the <a class="reference external" href="https://docs.localstack.cloud/getting-started/">Docs</a>.<br>
+Localstack provides us with a dockerfile and
+a <a class="reference external" href="https://github.com/localstack/localstack/blob/master/docker-compose.yml">docker-compose</a> to run locally. let’s set it
+up.<br>
 In a <code class="docutils literal notranslate"><span class="pre">docker-copmose.yml</span></code> let’s add these 2 containers:</p>
 <ul class="simple">
 <li><p>localstack</p></li>
@@ -445,25 +435,36 @@ networks:
 <section id="serverless-framework-integration-with-localstack">
 <h2>serverless framework integration with localstack<a class="headerlink" href="#serverless-framework-integration-with-localstack" title="Permalink to this headline">#</a></h2>
 <p>One last part before we can deploy our application locally is to configure our up to work with local stack.<br>
-To achieve that we will add a section to the templated <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file. We will use this serverless plugin - <a class="reference external" href="https://github.com/localstack/serverless-localstack">serverless-localstack</a>.<br>
-In your terminal run this command</p>
+To achieve that we will add a section to the templated <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file. We will use this serverless plugin</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/localstack/serverless-localstack">serverless-localstack</a>.<br>
+In your terminal run this command</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --save serverless@2.72.3
-npm install --save-dev serverless-localstack
-npm install --save-dev serverless-python-requirements
+npm install --save-dev serverless-localstack@1.0.1
+npm install --save-dev serverless-python-requirements@5.4.0
 </pre></div>
 </div>
 <p>You can see the added plugin in <code class="docutils literal notranslate"><span class="pre">package.json</span></code>.<br>
-<img width="387" alt="image" src="https://user-images.githubusercontent.com/81581678/205431559-4c03b320-6ece-40cf-963a-9d6af02ecf60.png"></p>
+<img alt="image" src="https://user-images.githubusercontent.com/81581678/207132874-a9e1f02a-7ea4-4df1-8c37-188fb0aea0ba.png" /></p>
 <p>Now, let’s add it to the <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file:<br>
 Under the plugin section:</p>
 <div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>plugins:
-  - serverless-wsgi
   - serverless-python-requirements
   - serverless-localstack
 </pre></div>
 </div>
+<p>Let’s minimize the deployed package size by adding this in <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> (directly, not in another section)</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>package:
+  exclude:
+    - &#39;./**&#39;
+  include:
+    - &#39;./handler.py&#39;
+</pre></div>
+</div>
 <p>Now under the custom section add this:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>localstack:
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>custom:
+  localstack:
     stages:
       # list of stages for which the plugin should be enabled
       - local
@@ -480,40 +481,12 @@ Under the plugin section:</p>
     docker:
       # Enable this flag to run &quot;docker ...&quot; commands as sudo
       sudo: False
-</pre></div>
-</div>
-</section>
-<section id="app-modifications-to-work-with-localstack">
-<h2>App modifications to work with localstack<a class="headerlink" href="#app-modifications-to-work-with-localstack" title="Permalink to this headline">#</a></h2>
-<p>edit this file: <code class="docutils literal notranslate"><span class="pre">app.py</span></code>.<br>
-Replace this:</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;dynamodb&#39;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IS_OFFLINE&#39;</span><span class="p">):</span>
-    <span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
-        <span class="s1">&#39;dynamodb&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s1">&#39;http://localhost:8000&#39;</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-<p>With this:</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
-    <span class="s1">&#39;dynamodb&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;us-east-1&#39;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s1">&#39;http://localstack:4566&#39;</span>
-<span class="p">)</span>
+  pythonRequirements:
+    fileName: requirements.txt
+    dockerizePip: false
 
 </pre></div>
 </div>
-<section id="edit-requirements-file">
-<h3>Edit Requirements file<a class="headerlink" href="#edit-requirements-file" title="Permalink to this headline">#</a></h3>
-<p>Copy this to the file called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> (generated by the sls cli)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Flask</span><span class="o">==</span><span class="mf">1.1.4</span>
-<span class="n">Werkzeug</span><span class="o">==</span><span class="mf">1.0.1</span>
-<span class="n">boto3</span><span class="o">==</span><span class="mf">1.17.64</span>
-<span class="n">MarkupSafe</span><span class="o">==</span><span class="mf">2.0.1</span>
-<span class="n">requests</span><span class="o">==</span><span class="mf">2.28.1</span>
-<span class="n">loguru</span><span class="o">==</span><span class="mf">0.6.0</span>
-</pre></div>
-</div>
-</section>
 </section>
 </section>
 
@@ -551,10 +524,10 @@ Replace this:</p>
             <p class="prev-next-title">Integration with Git</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="06.first-deploy.html" title="next page">
+    <a class='right-next' id="next-link" href="05.extend-our-app.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Time to deploy</p>
+        <p class="prev-next-title">Time to write some code</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -565,7 +538,7 @@ Replace this:</p>
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By Shlomi Kushchi<br/>
+    By Shlomi Kushchi, Jit.io<br/>
   
       &copy; Copyright 2022.<br/>
 </p>
