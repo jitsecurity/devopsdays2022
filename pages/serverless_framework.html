@@ -326,17 +326,29 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-the-serverless-framework-cli">
-   Installing the Serverless framework cli
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Serverless Framework
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-our-first-app">
-     Creating our first app
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-the-serverless-framework-cli">
+     Installing the Serverless framework cli
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-our-first-app">
+       Creating our first app
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#edit-your-serverless-function-definition">
+   Edit your serverless function definition
+  </a>
  </li>
 </ul>
 
@@ -357,17 +369,29 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-the-serverless-framework-cli">
-   Installing the Serverless framework cli
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Serverless Framework
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-our-first-app">
-     Creating our first app
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-the-serverless-framework-cli">
+     Installing the Serverless framework cli
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-our-first-app">
+       Creating our first app
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#edit-your-serverless-function-definition">
+   Edit your serverless function definition
+  </a>
  </li>
 </ul>
 
@@ -410,6 +434,41 @@ Follow the steps in the cli:</p>
 <p>Let’s go over the <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file.</p>
 </section>
 </section>
+</section>
+<section id="edit-your-serverless-function-definition">
+<h1>Edit your serverless function definition<a class="headerlink" href="#edit-your-serverless-function-definition" title="Permalink to this headline">#</a></h1>
+<p>Change this:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+</pre></div>
+</div>
+<p>To this:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>functions:
+  api:
+    handler: wsgi_handler.handler
+    package:
+      exclude:
+        - ./**
+      include:
+        - ./app.py
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+</pre></div>
+</div>
+<p>It will reduce the size of your lambda to include only the required components.</p>
 </section>
 
     <script type="text/x-thebe-config">

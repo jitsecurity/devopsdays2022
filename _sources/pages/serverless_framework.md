@@ -26,3 +26,41 @@ cd into your project. You will see these files in your project:
 * `app.py`
 
 Let's go over the `serverless.yml` file.
+
+## Edit your serverless function definition
+
+Change this:
+```yml
+functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+```
+
+To this:
+
+```yml
+functions:
+  api:
+    handler: wsgi_handler.handler
+    package:
+      exclude:
+        - ./**
+      include:
+        - ./app.py
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+```
+
+It will reduce the size of your lambda to include only the required components.
