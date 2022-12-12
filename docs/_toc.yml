@@ -9,7 +9,8 @@ chapters:
 - file: pages/04.localstack
 - file: pages/05.extend-our-app
 - file: pages/06.first-deploy
-- file: pages/07.DynamoDB
-- file: pages/08.github-integration
-- file: pages/09.github-actions
+- file: pages/07.lets-test-our-app
+- file: pages/08.DynamoDB
+- file: pages/09.github-integration
+- file: pages/10.github-actions
 - file: pages/troubleshooting
