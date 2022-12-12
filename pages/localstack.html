@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Time to deploy" href="first-deploy.html" />
-    <link rel="prev" title="Serverless Framework" href="serverless_framework.html" />
+    <link rel="prev" title="Integration with Git" href="git-integration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -122,6 +122,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="serverless_framework.html">
    Serverless Framework
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="git-integration.html">
+   Integration with Git
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -326,6 +331,11 @@ title="Print to PDF"
    serverless framework integration with localstack
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#app-modifications-to-work-with-localstack">
+   App modifications to work with localstack
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -348,6 +358,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#serverless-framework-integration-with-localstack">
    serverless framework integration with localstack
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#app-modifications-to-work-with-localstack">
+   App modifications to work with localstack
   </a>
  </li>
 </ul>
@@ -448,6 +463,26 @@ Under the plugin section:</p>
 </pre></div>
 </div>
 </section>
+<section id="app-modifications-to-work-with-localstack">
+<h2>App modifications to work with localstack<a class="headerlink" href="#app-modifications-to-work-with-localstack" title="Permalink to this headline">#</a></h2>
+<p>edit this file: <code class="docutils literal notranslate"><span class="pre">app.py</span></code>.<br>
+Replace this:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;dynamodb&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IS_OFFLINE&#39;</span><span class="p">):</span>
+    <span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
+        <span class="s1">&#39;dynamodb&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s1">&#39;http://localhost:8000&#39;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>With this:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
+    <span class="s1">&#39;dynamodb&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;us-east-1&#39;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s1">&#39;http://localstack:4566&#39;</span>
+<span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -477,11 +512,11 @@ Under the plugin section:</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="serverless_framework.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="git-integration.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Serverless Framework</p>
+            <p class="prev-next-title">Integration with Git</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="first-deploy.html" title="next page">

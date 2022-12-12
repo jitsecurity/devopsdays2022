@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Localstack" href="localstack.html" />
+    <link rel="next" title="Integration with Git" href="git-integration.html" />
     <link rel="prev" title="Requirements" href="requirements.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -122,6 +122,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Serverless Framework
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="git-integration.html">
+   Integration with Git
   </a>
  </li>
  <li class="toctree-l1">
@@ -327,11 +332,6 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#optional-create-your-serverless-framework-account">
-     Optional: create your serverless framework account
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#creating-our-first-app">
      Creating our first app
     </a>
@@ -363,11 +363,6 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#optional-create-your-serverless-framework-account">
-     Optional: create your serverless framework account
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#creating-our-first-app">
      Creating our first app
     </a>
@@ -392,29 +387,25 @@ title="Print to PDF"
 Run this command:
 <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">serverless&#64;2.72.3</span></code></p>
 <p>verify your version by running: <code class="docutils literal notranslate"><span class="pre">sls</span> <span class="pre">--version</span></code> and you should see this line in the console: <code class="docutils literal notranslate"><span class="pre">Framework</span> <span class="pre">Core:</span> <span class="pre">2.72.3</span></code></p>
-<section id="optional-create-your-serverless-framework-account">
-<h3>Optional: create your serverless framework account<a class="headerlink" href="#optional-create-your-serverless-framework-account" title="Permalink to this headline">#</a></h3>
-<p>We will not need this in our workshop but if you want to deploy to the cloud it will give you some more added value. <br>
-Go over to <a class="reference external" href="https://app.serverless.com/">https://app.serverless.com/</a> and create your free account.<br>
-if you’ve created your serverless framework account, let’s login through the cli <code class="docutils literal notranslate"><span class="pre">sls</span> <span class="pre">login</span></code></p>
-</section>
 <section id="creating-our-first-app">
 <h3>Creating our first app<a class="headerlink" href="#creating-our-first-app" title="Permalink to this headline">#</a></h3>
-<p>Running the cli like this will create our templated app: <code class="docutils literal notranslate"><span class="pre">sls</span></code>. We are going to select this template: <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">-</span> <span class="pre">Python</span> <span class="pre">-</span> <span class="pre">Flask</span> <span class="pre">API</span> <span class="pre">with</span> <span class="pre">DynamoDB</span></code>.<br>
+<p>We are going to use the serverless framework cli to generate our app. run this command:<br> <code class="docutils literal notranslate"><span class="pre">sls</span></code><br>
+We are going to select this template: <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">-</span> <span class="pre">Python</span> <span class="pre">-</span> <span class="pre">Flask</span> <span class="pre">API</span> <span class="pre">with</span> <span class="pre">DynamoDB</span></code>.<br>
 Follow the steps in the cli:</p>
 <ul class="simple">
 <li><p>What do you want to make? AWS - Python - Flask API with DynamoDB</p></li>
-<li><p>What do you want to call this project? (aws-python-flask-dynamodb-api-project)</p></li>
-<li><p>What org do you want to add this service to? if you’ve created your serverless account you could add it here or optionally skip this step</p></li>
-<li><p>What application do you want to add this to? Create a new app if you logged in</p></li>
-<li><p>No AWS credentials found, what credentials do you want to use? We can skip this step since we are going to work locally.</p></li>
+<li><p>What do you want to call this project? <code class="docutils literal notranslate"><span class="pre">please</span> <span class="pre">select</span> <span class="pre">a</span> <span class="pre">short</span> <span class="pre">name.</span> <span class="pre">e.g</span> <span class="pre">my-app</span></code></p></li>
+<li><p>What org do you want to add this service to? <code class="docutils literal notranslate"><span class="pre">[Skip]</span></code></p></li>
+</ul>
+<ul class="simple">
+<li><p>No AWS credentials found, what credentials do you want to use?  <code class="docutils literal notranslate"><span class="pre">[Skip]</span></code> We can skip this step since we are going to work locally.</p></li>
 </ul>
 <p>cd into your project. You will see these files in your project:</p>
 <ul class="simple">
-<li><p>serverless.yml</p></li>
-<li><p>package.json</p></li>
-<li><p>requirements.txt</p></li>
-<li><p><a class="reference external" href="http://app.py">app.py</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package.json</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">app.py</span></code></p></li>
 </ul>
 <p>Let’s go over the <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file.</p>
 </section>
@@ -455,10 +446,10 @@ Follow the steps in the cli:</p>
             <p class="prev-next-title">Requirements</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="localstack.html" title="next page">
+    <a class='right-next' id="next-link" href="git-integration.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Localstack</p>
+        <p class="prev-next-title">Integration with Git</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
