@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Securing via github actions &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
+    <title>Localstack &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,7 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Upload Code To Github" href="github-integration.html" />
+    <link rel="next" title="Time to deploy" href="06.first-deploy.html" />
+    <link rel="prev" title="Integration with Git" href="03.git-integration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -114,42 +115,42 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="requirements.html">
+  <a class="reference internal" href="01.requirements.html">
    Requirements
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="serverless_framework.html">
+  <a class="reference internal" href="02.serverless_framework.html">
    Serverless Framework
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="git-integration.html">
+  <a class="reference internal" href="03.git-integration.html">
    Integration with Git
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="localstack.html">
-   Localstack
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="first-deploy.html">
-   Time to deploy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DynamoDB.html">
-   Let’s see the data in DynamoDB
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="github-integration.html">
-   Upload Code To Github
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
+   Localstack
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06.first-deploy.html">
+   Time to deploy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07.DynamoDB.html">
+   Let’s see the data in DynamoDB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08.github-integration.html">
+   Upload Code To Github
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09.github-actions.html">
    Securing via github actions
   </a>
  </li>
@@ -243,7 +244,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/github-actions.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/05.localstack.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -271,7 +272,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/pages/github-actions.md"
+        <a href="../_sources/pages/05.localstack.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -331,19 +332,21 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gitleaks">
-   Gitleaks
+  <a class="reference internal nav-link" href="#serverless-framework-integration-with-localstack">
+   serverless framework integration with localstack
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sast-static-application-security-testing">
-   SAST (Static application security testing)
+  <a class="reference internal nav-link" href="#app-modifications-to-work-with-localstack">
+   App modifications to work with localstack
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iac-scaning-with-kics">
-   IaC Scaning With Kics
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edit-requirements-file">
+     Edit Requirements file
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -354,7 +357,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Securing via github actions</h1>
+                <h1>Localstack</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -365,19 +368,21 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gitleaks">
-   Gitleaks
+  <a class="reference internal nav-link" href="#serverless-framework-integration-with-localstack">
+   serverless framework integration with localstack
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sast-static-application-security-testing">
-   SAST (Static application security testing)
+  <a class="reference internal nav-link" href="#app-modifications-to-work-with-localstack">
+   App modifications to work with localstack
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iac-scaning-with-kics">
-   IaC Scaning With Kics
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edit-requirements-file">
+     Edit Requirements file
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -389,91 +394,126 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="securing-via-github-actions">
-<h1>Securing via github actions<a class="headerlink" href="#securing-via-github-actions" title="Permalink to this headline">#</a></h1>
-<p><a class="reference external" href="https://github.com/features/actions">Github Actions</a> is a CI platform builtin to Github that allows us to run CI pipeline upon changes of our code.<br></p>
-<p>We will add these Github actions:</p>
+  <section id="localstack">
+<h1>Localstack<a class="headerlink" href="#localstack" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://localstack.cloud/">LocalStack</a> is a cloud service emulator that runs in a single container on your laptop or in your CI environment. With LocalStack, you can run your AWS applications or Lambdas entirely on your local machine without connecting to a remote cloud provider! Read the <a class="reference external" href="https://docs.localstack.cloud/getting-started/">Docs</a>.<br>
+Localstack provides us with a dockerfile and a <a class="reference external" href="https://github.com/localstack/localstack/blob/master/docker-compose.yml">docker-compose</a> to run locally. let’s set it up.<br>
+In a <code class="docutils literal notranslate"><span class="pre">docker-copmose.yml</span></code> let’s add these 2 containers:</p>
 <ul class="simple">
-<li><p>Secrets using <a class="reference external" href="https://github.com/marketplace/actions/gitleaks">gitleaks</a></p></li>
-<li><p>SAST using <span class="xref myst">Bandit</span>.</p></li>
-<li><p>SCA</p></li>
-<li><p>IaC scanning using <a class="reference external" href="https://github.com/marketplace/actions/kics-github-action">Kics</a>.</p></li>
+<li><p>localstack</p></li>
+<li><p>dynamodb-admin</p></li>
 </ul>
-<p>Let’s begin.<br>
-Create this folder in your project’s dir <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>.<br>
-All files should be generated under that folder.</p>
-<section id="gitleaks">
-<h2>Gitleaks<a class="headerlink" href="#gitleaks" title="Permalink to this headline">#</a></h2>
-<p>Create a file called <code class="docutils literal notranslate"><span class="pre">gitleaks.yml</span></code> and copy this content.</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>name: gitleaks
-on:
-  pull_request:
-  push:
-    
-jobs:
-  scan:
-    name: gitleaks
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>version: &#39;3.9&#39;
+
+services:
+  dynamodb:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - &quot;8001:8001&quot;
+    environment:
+      - DYNAMO_ENDPOINT=http://localstack:4566
+    networks:
+      - localstack-net
+
+  localstack:
+    container_name: &quot;${LOCALSTACK_DOCKER_NAME-localstack_main}&quot;
+    image: localstack/localstack:1.2.0
+    ports:
+      - &quot;127.0.0.1:4566:4566&quot;            # LocalStack Gateway
+      - &quot;127.0.0.1:4510-4559:4510-4559&quot;  # external services port range
+      - &quot;127.0.0.1:53:53&quot;                # DNS config (only required for Pro)
+      - &quot;127.0.0.1:53:53/udp&quot;            # DNS config (only required for Pro)
+      - &quot;127.0.0.1:443:443&quot;              # LocalStack HTTPS Gateway (only required for Pro)
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LAMBDA_EXECUTOR=local
+      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}  # only required for Pro
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - &quot;${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack&quot;
+      - &quot;/var/run/docker.sock:/var/run/docker.sock&quot;
+    networks:
+      - localstack-net
+
+networks:
+  localstack-net:
+    name: localstack-net
+
+</pre></div>
+</div>
+<section id="serverless-framework-integration-with-localstack">
+<h2>serverless framework integration with localstack<a class="headerlink" href="#serverless-framework-integration-with-localstack" title="Permalink to this headline">#</a></h2>
+<p>One last part before we can deploy our application locally is to configure our up to work with local stack.<br>
+To achieve that we will add a section to the templated <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file. We will use this serverless plugin - <a class="reference external" href="https://github.com/localstack/serverless-localstack">serverless-localstack</a>.<br>
+In your terminal run this command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --save serverless@2.72.3
+npm install --save-dev serverless-localstack
+npm install --save-dev serverless-python-requirements
+</pre></div>
+</div>
+<p>You can see the added plugin in <code class="docutils literal notranslate"><span class="pre">package.json</span></code>.<br>
+<img width="387" alt="image" src="https://user-images.githubusercontent.com/81581678/205431559-4c03b320-6ece-40cf-963a-9d6af02ecf60.png"></p>
+<p>Now, let’s add it to the <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file:<br>
+Under the plugin section:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>plugins:
+  - serverless-wsgi
+  - serverless-python-requirements
+  - serverless-localstack
+</pre></div>
+</div>
+<p>Now under the custom section add this:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>localstack:
+    stages:
+      # list of stages for which the plugin should be enabled
+      - local
+    host: http://localhost  # optional - LocalStack host to connect to
+    edgePort: 4566  # optional - LocalStack edge port to connect to
+    autostart: true  # optional - Start LocalStack in Docker on Serverless deploy
+    networks: #optional - attaches the list of networks to the localstack docker container after startup
+      - host
+      - overlay
+      - localstack-net
+    lambda:
+      # Enable this flag to improve performance
+      mountCode: false  # specify either &quot;true&quot;, or a relative path to the root Lambda mount path
+    docker:
+      # Enable this flag to run &quot;docker ...&quot; commands as sudo
+      sudo: False
 </pre></div>
 </div>
 </section>
-<section id="sast-static-application-security-testing">
-<h2>SAST (Static application security testing)<a class="headerlink" href="#sast-static-application-security-testing" title="Permalink to this headline">#</a></h2>
-<p>Let’s create this workflow <code class="docutils literal notranslate"><span class="pre">sast.yml</span></code><br>
-and copy this to the file:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>name: Test SAST Bandit action PR comment
+<section id="app-modifications-to-work-with-localstack">
+<h2>App modifications to work with localstack<a class="headerlink" href="#app-modifications-to-work-with-localstack" title="Permalink to this headline">#</a></h2>
+<p>edit this file: <code class="docutils literal notranslate"><span class="pre">app.py</span></code>.<br>
+Replace this:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;dynamodb&#39;</span><span class="p">)</span>
 
-on:
-  pull_request:
-  push:
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IS_OFFLINE&#39;</span><span class="p">):</span>
+    <span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
+        <span class="s1">&#39;dynamodb&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s1">&#39;http://localhost:8000&#39;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>With this:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
+    <span class="s1">&#39;dynamodb&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;us-east-1&#39;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s1">&#39;http://localstack:4566&#39;</span>
+<span class="p">)</span>
 
-jobs:
-  kics:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: mdegis/bandit-action@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          path: &quot;.&quot;
-          level: high
-          confidence: high
-          exit_zero: true
+</pre></div>
+</div>
+<section id="edit-requirements-file">
+<h3>Edit Requirements file<a class="headerlink" href="#edit-requirements-file" title="Permalink to this headline">#</a></h3>
+<p>Copy this to the file called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> (generated by the sls cli)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Flask</span><span class="o">==</span><span class="mf">1.1.4</span>
+<span class="n">Werkzeug</span><span class="o">==</span><span class="mf">1.0.1</span>
+<span class="n">boto3</span><span class="o">==</span><span class="mf">1.17.64</span>
+<span class="n">MarkupSafe</span><span class="o">==</span><span class="mf">2.0.1</span>
+<span class="n">requests</span><span class="o">==</span><span class="mf">2.28.1</span>
+<span class="n">loguru</span><span class="o">==</span><span class="mf">0.6.0</span>
 </pre></div>
 </div>
 </section>
-<section id="iac-scaning-with-kics">
-<h2>IaC Scaning With Kics<a class="headerlink" href="#iac-scaning-with-kics" title="Permalink to this headline">#</a></h2>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>
-name: Test KICS action PR comment
-
-on:
-  pull_request:
-  push:
-
-jobs:
-  kics:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: run kics Scan
-      uses: checkmarx/kics-github-action@v1.6
-      with:
-        path: ./
-        token: ${{ secrets.GITHUB_TOKEN }}
-        output_path: myResults/
-        ignore_on_exit: results
-        enable_comments: true
-</pre></div>
-</div>
 </section>
 </section>
 
@@ -504,12 +544,19 @@ jobs:
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="github-integration.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="03.git-integration.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Upload Code To Github</p>
+            <p class="prev-next-title">Integration with Git</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="06.first-deploy.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Time to deploy</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

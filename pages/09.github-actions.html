@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Time to deploy &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
+    <title>Securing via github actions &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Let’s see the data in DynamoDB" href="DynamoDB.html" />
-    <link rel="prev" title="Localstack" href="localstack.html" />
+    <link rel="prev" title="Upload Code To Github" href="08.github-integration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -115,42 +114,42 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="requirements.html">
+  <a class="reference internal" href="01.requirements.html">
    Requirements
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="serverless_framework.html">
+  <a class="reference internal" href="02.serverless_framework.html">
    Serverless Framework
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="git-integration.html">
+  <a class="reference internal" href="03.git-integration.html">
    Integration with Git
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="localstack.html">
+  <a class="reference internal" href="05.localstack.html">
    Localstack
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06.first-deploy.html">
    Time to deploy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="DynamoDB.html">
+  <a class="reference internal" href="07.DynamoDB.html">
    Let’s see the data in DynamoDB
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="github-integration.html">
+  <a class="reference internal" href="08.github-integration.html">
    Upload Code To Github
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="github-actions.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Securing via github actions
   </a>
  </li>
@@ -244,7 +243,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/first-deploy.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/09.github-actions.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -272,7 +271,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/pages/first-deploy.md"
+        <a href="../_sources/pages/09.github-actions.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -332,16 +331,19 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#let-s-try-our-newly-deployed-serverless-app">
-   Let’s try our newly deployed serverless app
+  <a class="reference internal nav-link" href="#gitleaks">
+   Gitleaks
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#local-requirements">
-     Local Requirements
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sast-static-application-security-testing">
+   SAST (Static application security testing)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iac-scaning-with-kics">
+   IaC Scaning With Kics
+  </a>
  </li>
 </ul>
 
@@ -352,7 +354,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Time to deploy</h1>
+                <h1>Securing via github actions</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -363,16 +365,19 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#let-s-try-our-newly-deployed-serverless-app">
-   Let’s try our newly deployed serverless app
+  <a class="reference internal nav-link" href="#gitleaks">
+   Gitleaks
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#local-requirements">
-     Local Requirements
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sast-static-application-security-testing">
+   SAST (Static application security testing)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iac-scaning-with-kics">
+   IaC Scaning With Kics
+  </a>
  </li>
 </ul>
 
@@ -384,77 +389,91 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="time-to-deploy">
-<h1>Time to deploy<a class="headerlink" href="#time-to-deploy" title="Permalink to this headline">#</a></h1>
-<p>Now that we have localstack set up, it’s time to deploy our application. Run this command:<br></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sls deploy --stage <span class="nb">local</span>
-</pre></div>
-</div>
-<p>wait for deployment to complete, and move to the next section.</p>
-<section id="let-s-try-our-newly-deployed-serverless-app">
-<h2>Let’s try our newly deployed serverless app<a class="headerlink" href="#let-s-try-our-newly-deployed-serverless-app" title="Permalink to this headline">#</a></h2>
-<section id="local-requirements">
-<h3>Local Requirements<a class="headerlink" href="#local-requirements" title="Permalink to this headline">#</a></h3>
-<p>Let’s generate a vritualenv
-installing with pip <br>
-<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">virtualenv</span></code> <br></p>
-<p>create a local <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/">virtualenv</a> in the project’s directory <br>
-<code class="docutils literal notranslate"><span class="pre">virtualenv</span> <span class="pre">venv</span></code><br>
-activate it:<br>
-Unix/Mac: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code> <br>
-Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scripts\activate</span></code> <br></p>
-<p>and run this command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
-<p>You can use this client to interact with your app.
-It will:</p>
+  <section id="securing-via-github-actions">
+<h1>Securing via github actions<a class="headerlink" href="#securing-via-github-actions" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://github.com/features/actions">Github Actions</a> is a CI platform builtin to Github that allows us to run CI pipeline upon changes of our code.<br></p>
+<p>We will add these Github actions:</p>
 <ul class="simple">
-<li><p>try to get a user from the api</p></li>
-<li><p>if the user is not present, it will create it and return it value</p></li>
+<li><p>Secrets using <a class="reference external" href="https://github.com/marketplace/actions/gitleaks">gitleaks</a></p></li>
+<li><p>SAST using <span class="xref myst">Bandit</span>.</p></li>
+<li><p>SCA</p></li>
+<li><p>IaC scanning using <a class="reference external" href="https://github.com/marketplace/actions/kics-github-action">Kics</a>.</p></li>
 </ul>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
-
-<span class="n">USER_ID</span> <span class="o">=</span> <span class="s2">&quot;user-1&quot;</span>
-<span class="n">USER_NAME</span> <span class="o">=</span> <span class="s2">&quot;my-user&quot;</span>
-
-
-<span class="k">def</span> <span class="nf">get_deployment_url</span><span class="p">():</span>
-    <span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; - &quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;sls info --stage local&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;http&quot;</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
-    <span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">raw</span> <span class="k">if</span> <span class="s2">&quot; &quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">raw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-
-<span class="n">URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">get_deployment_url</span><span class="p">()</span><span class="si">}</span><span class="s2">/users&quot;</span>
-
-
-<span class="k">def</span> <span class="nf">create_user</span><span class="p">():</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;userId&quot;</span><span class="p">:</span> <span class="n">USER_ID</span><span class="p">,</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">USER_NAME</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">404</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-
-<span class="k">def</span> <span class="nf">get_user</span><span class="p">():</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">USER_ID</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">404</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User doesn&#39;t exist&quot;</span><span class="p">)</span>
-        <span class="n">user</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User created: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got user from DB: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<p>Let’s begin.<br>
+Create this folder in your project’s dir <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>.<br>
+All files should be generated under that folder.</p>
+<section id="gitleaks">
+<h2>Gitleaks<a class="headerlink" href="#gitleaks" title="Permalink to this headline">#</a></h2>
+<p>Create a file called <code class="docutils literal notranslate"><span class="pre">gitleaks.yml</span></code> and copy this content.</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>name: gitleaks
+on:
+  pull_request:
+  push:
+    
+jobs:
+  scan:
+    name: gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
 </pre></div>
 </div>
 </section>
+<section id="sast-static-application-security-testing">
+<h2>SAST (Static application security testing)<a class="headerlink" href="#sast-static-application-security-testing" title="Permalink to this headline">#</a></h2>
+<p>Let’s create this workflow <code class="docutils literal notranslate"><span class="pre">sast.yml</span></code><br>
+and copy this to the file:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>name: Test SAST Bandit action PR comment
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  kics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: mdegis/bandit-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: &quot;.&quot;
+          level: high
+          confidence: high
+          exit_zero: true
+</pre></div>
+</div>
+</section>
+<section id="iac-scaning-with-kics">
+<h2>IaC Scaning With Kics<a class="headerlink" href="#iac-scaning-with-kics" title="Permalink to this headline">#</a></h2>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>
+name: Test KICS action PR comment
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  kics:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: run kics Scan
+      uses: checkmarx/kics-github-action@v1.6
+      with:
+        path: ./
+        token: ${{ secrets.GITHUB_TOKEN }}
+        output_path: myResults/
+        ignore_on_exit: results
+        enable_comments: true
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -485,19 +504,12 @@ It will:</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="localstack.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="08.github-integration.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Localstack</p>
+            <p class="prev-next-title">Upload Code To Github</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="DynamoDB.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Let’s see the data in DynamoDB</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

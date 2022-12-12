@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Localstack &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
+    <title>Time to deploy &#8212; DevopsDays TLV 2022 - Jit Workshop</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Time to deploy" href="first-deploy.html" />
-    <link rel="prev" title="Integration with Git" href="git-integration.html" />
+    <link rel="next" title="Let’s see the data in DynamoDB" href="07.DynamoDB.html" />
+    <link rel="prev" title="Localstack" href="05.localstack.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -115,42 +115,42 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="requirements.html">
+  <a class="reference internal" href="01.requirements.html">
    Requirements
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="serverless_framework.html">
+  <a class="reference internal" href="02.serverless_framework.html">
    Serverless Framework
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="git-integration.html">
+  <a class="reference internal" href="03.git-integration.html">
    Integration with Git
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05.localstack.html">
+   Localstack
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Localstack
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="first-deploy.html">
    Time to deploy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="DynamoDB.html">
+  <a class="reference internal" href="07.DynamoDB.html">
    Let’s see the data in DynamoDB
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="github-integration.html">
+  <a class="reference internal" href="08.github-integration.html">
    Upload Code To Github
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="github-actions.html">
+  <a class="reference internal" href="09.github-actions.html">
    Securing via github actions
   </a>
  </li>
@@ -244,7 +244,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/localstack.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/jitsecurity/devopsdays2022/issues/new?title=Issue%20on%20page%20%2Fpages/06.first-deploy.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -272,7 +272,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/pages/localstack.md"
+        <a href="../_sources/pages/06.first-deploy.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -332,18 +332,18 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#serverless-framework-integration-with-localstack">
-   serverless framework integration with localstack
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-modifications-to-work-with-localstack">
-   App modifications to work with localstack
+  <a class="reference internal nav-link" href="#let-s-try-our-newly-deployed-serverless-app">
+   Let’s try our newly deployed serverless app
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edit-requirements-file">
-     Edit Requirements file
+    <a class="reference internal nav-link" href="#local-requirements">
+     Local Requirements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-our-client">
+     Run our client
     </a>
    </li>
   </ul>
@@ -357,7 +357,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Localstack</h1>
+                <h1>Time to deploy</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -368,18 +368,18 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#serverless-framework-integration-with-localstack">
-   serverless framework integration with localstack
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-modifications-to-work-with-localstack">
-   App modifications to work with localstack
+  <a class="reference internal nav-link" href="#let-s-try-our-newly-deployed-serverless-app">
+   Let’s try our newly deployed serverless app
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edit-requirements-file">
-     Edit Requirements file
+    <a class="reference internal nav-link" href="#local-requirements">
+     Local Requirements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-our-client">
+     Run our client
     </a>
    </li>
   </ul>
@@ -394,124 +394,80 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="localstack">
-<h1>Localstack<a class="headerlink" href="#localstack" title="Permalink to this headline">#</a></h1>
-<p><a class="reference external" href="https://localstack.cloud/">LocalStack</a> is a cloud service emulator that runs in a single container on your laptop or in your CI environment. With LocalStack, you can run your AWS applications or Lambdas entirely on your local machine without connecting to a remote cloud provider! Read the <a class="reference external" href="https://docs.localstack.cloud/getting-started/">Docs</a>.<br>
-Localstack provides us with a dockerfile and a <a class="reference external" href="https://github.com/localstack/localstack/blob/master/docker-compose.yml">docker-compose</a> to run locally. let’s set it up.<br>
-In a <code class="docutils literal notranslate"><span class="pre">docker-copmose.yml</span></code> let’s add these 2 containers:</p>
-<ul class="simple">
-<li><p>localstack</p></li>
-<li><p>dynamodb-admin</p></li>
-</ul>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>version: &#39;3.9&#39;
-
-services:
-  dynamodb:
-    image: aaronshaf/dynamodb-admin
-    ports:
-      - &quot;8001:8001&quot;
-    environment:
-      - DYNAMO_ENDPOINT=http://localstack:4566
-    networks:
-      - localstack-net
-
-  localstack:
-    container_name: &quot;${LOCALSTACK_DOCKER_NAME-localstack_main}&quot;
-    image: localstack/localstack:1.2.0
-    ports:
-      - &quot;127.0.0.1:4566:4566&quot;            # LocalStack Gateway
-      - &quot;127.0.0.1:4510-4559:4510-4559&quot;  # external services port range
-      - &quot;127.0.0.1:53:53&quot;                # DNS config (only required for Pro)
-      - &quot;127.0.0.1:53:53/udp&quot;            # DNS config (only required for Pro)
-      - &quot;127.0.0.1:443:443&quot;              # LocalStack HTTPS Gateway (only required for Pro)
-    environment:
-      - DEBUG=${DEBUG-}
-      - PERSISTENCE=${PERSISTENCE-}
-      - LAMBDA_EXECUTOR=local
-      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}  # only required for Pro
-      - DOCKER_HOST=unix:///var/run/docker.sock
-    volumes:
-      - &quot;${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack&quot;
-      - &quot;/var/run/docker.sock:/var/run/docker.sock&quot;
-    networks:
-      - localstack-net
-
-networks:
-  localstack-net:
-    name: localstack-net
-
+  <section id="time-to-deploy">
+<h1>Time to deploy<a class="headerlink" href="#time-to-deploy" title="Permalink to this headline">#</a></h1>
+<p>Now that we have localstack set up, it’s time to deploy our application. Run this command:<br></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sls deploy --stage <span class="nb">local</span>
 </pre></div>
 </div>
-<section id="serverless-framework-integration-with-localstack">
-<h2>serverless framework integration with localstack<a class="headerlink" href="#serverless-framework-integration-with-localstack" title="Permalink to this headline">#</a></h2>
-<p>One last part before we can deploy our application locally is to configure our up to work with local stack.<br>
-To achieve that we will add a section to the templated <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file. We will use this serverless plugin - <a class="reference external" href="https://github.com/localstack/serverless-localstack">serverless-localstack</a>.<br>
-In your terminal run this command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --save serverless@2.72.3
-npm install --save-dev serverless-localstack
-</pre></div>
-</div>
-<p>You can see the added plugin in <code class="docutils literal notranslate"><span class="pre">package.json</span></code>.<br>
-<img width="387" alt="image" src="https://user-images.githubusercontent.com/81581678/205431559-4c03b320-6ece-40cf-963a-9d6af02ecf60.png"></p>
-<p>Now, let’s add it to the <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> file:<br>
-Under the plugin section:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>plugins:
-  - serverless-wsgi
-  - serverless-python-requirements
-  - serverless-localstack
-</pre></div>
-</div>
-<p>Now under the custom section add this:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>localstack:
-    stages:
-      # list of stages for which the plugin should be enabled
-      - local
-    host: http://localhost  # optional - LocalStack host to connect to
-    edgePort: 4566  # optional - LocalStack edge port to connect to
-    autostart: true  # optional - Start LocalStack in Docker on Serverless deploy
-    networks: #optional - attaches the list of networks to the localstack docker container after startup
-      - host
-      - overlay
-      - localstack-net
-    lambda:
-      # Enable this flag to improve performance
-      mountCode: false  # specify either &quot;true&quot;, or a relative path to the root Lambda mount path
-    docker:
-      # Enable this flag to run &quot;docker ...&quot; commands as sudo
-      sudo: False
-</pre></div>
-</div>
+<p>wait for deployment to complete, and move to the next section.</p>
+<section id="let-s-try-our-newly-deployed-serverless-app">
+<h2>Let’s try our newly deployed serverless app<a class="headerlink" href="#let-s-try-our-newly-deployed-serverless-app" title="Permalink to this headline">#</a></h2>
+<section id="local-requirements">
+<h3>Local Requirements<a class="headerlink" href="#local-requirements" title="Permalink to this headline">#</a></h3>
+<p>Let’s generate a vritualenv
+installing with pip <br>
+<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">virtualenv</span></code> <br></p>
+<p>create a local <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/">virtualenv</a> in the project’s directory <br>
+<code class="docutils literal notranslate"><span class="pre">virtualenv</span> <span class="pre">venv</span></code><br>
+activate it:<br>
+Unix/Mac: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code> <br>
+Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scripts\activate</span></code> <br></p>
+<p>and run this command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
 </section>
-<section id="app-modifications-to-work-with-localstack">
-<h2>App modifications to work with localstack<a class="headerlink" href="#app-modifications-to-work-with-localstack" title="Permalink to this headline">#</a></h2>
-<p>edit this file: <code class="docutils literal notranslate"><span class="pre">app.py</span></code>.<br>
-Replace this:</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;dynamodb&#39;</span><span class="p">)</span>
+<section id="run-our-client">
+<h3>Run our client<a class="headerlink" href="#run-our-client" title="Permalink to this headline">#</a></h3>
+<p>create a file called <code class="docutils literal notranslate"><span class="pre">client.py</span></code> and paste this snippet to it</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IS_OFFLINE&#39;</span><span class="p">):</span>
-    <span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
-        <span class="s1">&#39;dynamodb&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s1">&#39;http://localhost:8000&#39;</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-<p>With this:</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
-    <span class="s1">&#39;dynamodb&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;us-east-1&#39;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s1">&#39;http://localstack:4566&#39;</span>
-<span class="p">)</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
 
+<span class="n">USER_ID</span> <span class="o">=</span> <span class="s2">&quot;user-1&quot;</span>
+<span class="n">USER_NAME</span> <span class="o">=</span> <span class="s2">&quot;my-user&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">get_deployment_url</span><span class="p">():</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; - &quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;sls info --stage local&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;http&quot;</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">raw</span> <span class="k">if</span> <span class="s2">&quot; &quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">raw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="n">URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">get_deployment_url</span><span class="p">()</span><span class="si">}</span><span class="s2">/users&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">():</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;userId&quot;</span><span class="p">:</span> <span class="n">USER_ID</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">USER_NAME</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">():</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">USER_ID</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User doesn&#39;t exist&quot;</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User created: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got user from DB: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<section id="edit-requirements-file">
-<h3>Edit Requirements file<a class="headerlink" href="#edit-requirements-file" title="Permalink to this headline">#</a></h3>
-<p>Copy this to the file called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> (generated by the sls cli)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Flask</span><span class="o">==</span><span class="mf">1.1.4</span>
-<span class="n">Werkzeug</span><span class="o">==</span><span class="mf">1.0.1</span>
-<span class="n">boto3</span><span class="o">==</span><span class="mf">1.17.64</span>
-<span class="n">MarkupSafe</span><span class="o">==</span><span class="mf">2.0.1</span>
-<span class="n">requests</span><span class="o">==</span><span class="mf">2.28.1</span>
-<span class="n">loguru</span><span class="o">==</span><span class="mf">0.6.0</span>
-</pre></div>
-</div>
+<p>You can use this client to interact with your app.
+It will:</p>
+<ul class="simple">
+<li><p>try to get a user from the api</p></li>
+<li><p>if the user is not present, it will create it and return it value</p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -543,17 +499,17 @@ Replace this:</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="git-integration.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="05.localstack.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Integration with Git</p>
+            <p class="prev-next-title">Localstack</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="first-deploy.html" title="next page">
+    <a class='right-next' id="next-link" href="07.DynamoDB.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Time to deploy</p>
+        <p class="prev-next-title">Let’s see the data in DynamoDB</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
