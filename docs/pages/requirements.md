@@ -7,3 +7,5 @@ Running locally with this setup
 * python 3.8
 * serverless framework 2.72.3
 * localstack 1.3.0
+* Github Account
+* Code IDE of your choice

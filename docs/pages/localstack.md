@@ -82,4 +82,23 @@ localstack:
     docker:
       # Enable this flag to run "docker ..." commands as sudo
       sudo: False
-```      
+```
+
+### App modifications to work with localstack
+edit this file: `app.py`.<br>
+Replace this:
+```py
+dynamodb_client = boto3.client('dynamodb')
+
+if os.environ.get('IS_OFFLINE'):
+    dynamodb_client = boto3.client(
+        'dynamodb', region_name='localhost', endpoint_url='http://localhost:8000'
+    )
+```
+With this: 
+```py
+dynamodb_client = boto3.client(
+    'dynamodb', region_name='us-east-1', endpoint_url='http://localstack:4566'
+)
+
+```

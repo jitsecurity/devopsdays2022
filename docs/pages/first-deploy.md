@@ -1,7 +1,7 @@
 
 ## Time to deploy
 Now that we have localstack set up, it's time to deploy our application. Run this command:<br>
-`sls deploy --stage local`
+```sls deploy --stage local```
 
 wait for deployment to complete, and move to the next section.
 
