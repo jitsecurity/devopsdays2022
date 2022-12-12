@@ -10,4 +10,5 @@ chapters:
 - file: pages/localstack
 - file: pages/first-deploy
 - file: pages/DynamoDB
+- file: pages/github-integration
 - file: pages/github-actions
