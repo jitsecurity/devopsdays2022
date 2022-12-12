@@ -20,7 +20,7 @@ services:
 
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
-    image: localstack/localstack:1.3.0
+    image: localstack/localstack:1.2.0
     ports:
       - "127.0.0.1:4566:4566"            # LocalStack Gateway
       - "127.0.0.1:4510-4559:4510-4559"  # external services port range
