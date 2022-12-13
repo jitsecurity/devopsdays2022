@@ -413,50 +413,50 @@ POST and GET our data from our serverless API.</p>
 <section id="dynamodb">
 <h2>DynamoDB<a class="headerlink" href="#dynamodb" title="Permalink to this headline">#</a></h2>
 <p>Add this section to your <code class="docutils literal notranslate"><span class="pre">serverless.yml</span></code> at the bottom</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>resources:
-  Resources:
-    UsersTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        AttributeDefinitions:
-          - AttributeName: userId
-            AttributeType: S
-        KeySchema:
-          - AttributeName: userId
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        TableName: Users
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">Resources</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">UsersTable</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS::DynamoDB::Table</span><span class="w"></span>
+<span class="w">      </span><span class="nt">Properties</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">AttributeDefinitions</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">AttributeName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userId</span><span class="w"></span>
+<span class="w">            </span><span class="nt">AttributeType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">S</span><span class="w"></span>
+<span class="w">        </span><span class="nt">KeySchema</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">AttributeName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userId</span><span class="w"></span>
+<span class="w">            </span><span class="nt">KeyType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HASH</span><span class="w"></span>
+<span class="w">        </span><span class="nt">ProvisionedThroughput</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">ReadCapacityUnits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">          </span><span class="nt">WriteCapacityUnits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">        </span><span class="nt">TableName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Users</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="extending-the-api">
 <h2>Extending the API<a class="headerlink" href="#extending-the-api" title="Permalink to this headline">#</a></h2>
 <p>Let’s change this:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: /
-          method: get
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">functions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">hello</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">handler.hello</span><span class="w"></span>
+<span class="w">    </span><span class="nt">events</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">http</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span><span class="w"></span>
+<span class="w">          </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get</span><span class="w"></span>
 </pre></div>
 </div>
 <p>to this:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>functions:
-  get-user:
-    handler: handler.get_user
-    events:
-      - http:
-          path: /users/{user_id}
-          method: get
-  create-user:
-    handler: handler.create_user
-    events:
-      - http:
-          path: /users
-          method: post
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">functions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">get-user</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">handler.get_user</span><span class="w"></span>
+<span class="w">    </span><span class="nt">events</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">http</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/users/{user_id}</span><span class="w"></span>
+<span class="w">          </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get</span><span class="w"></span>
+<span class="w">  </span><span class="nt">create-user</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">handler.create_user</span><span class="w"></span>
+<span class="w">    </span><span class="nt">events</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">http</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/users</span><span class="w"></span>
+<span class="w">          </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">post</span><span class="w"></span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Bonus:</span> <span class="pre">if</span> <span class="pre">you</span> <span class="pre">have</span> <span class="pre">time,</span> <span class="pre">why</span> <span class="pre">don't</span> <span class="pre">you</span> <span class="pre">try</span> <span class="pre">to</span> <span class="pre">implement</span> <span class="pre">UPDATE</span> <span class="pre">and</span> <span class="pre">DELETE</span> <span class="pre">?</span></code></p>

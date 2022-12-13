@@ -342,15 +342,14 @@ title="Print to PDF"
 <h1>Let’s see the data in DynamoDB<a class="headerlink" href="#let-s-see-the-data-in-dynamodb" title="Permalink to this headline">#</a></h1>
 <p>Inside the docker-compose there’s section image called dynamodb which runs the dynamodb-admin docker image.<br>
 A reminder:<br></p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>dynamodb:
-    image: aaronshaf/dynamodb-admin
-    ports:
-      - &quot;8001:8001&quot;
-    environment:
-      - DYNAMO_ENDPOINT=http://localstack:4566
-    networks:
-      - localstack-net
-
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dynamodb</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aaronshaf/dynamodb-admin</span><span class="w"></span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8001:8001&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DYNAMO_ENDPOINT=http://localstack:4566</span><span class="w"></span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localstack-net</span><span class="w"></span>
 </pre></div>
 </div>
 <p>It’s a UI interface to view DDB locally.<br>
