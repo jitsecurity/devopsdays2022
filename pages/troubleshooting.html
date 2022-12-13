@@ -340,6 +340,21 @@ title="Print to PDF"
    Second deployment doesn’t work
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#my-service-is-gone">
+   My Service is gone
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#localstack-logs">
+   Localstack logs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#serverless-function-logs">
+   Serverless Function Logs
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -364,6 +379,21 @@ title="Print to PDF"
    Second deployment doesn’t work
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#my-service-is-gone">
+   My Service is gone
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#localstack-logs">
+   Localstack logs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#serverless-function-logs">
+   Serverless Function Logs
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -380,6 +410,25 @@ title="Print to PDF"
 <h2>Second deployment doesn’t work<a class="headerlink" href="#second-deployment-doesn-t-work" title="Permalink to this headline">#</a></h2>
 <p>Sometimes, especially when we change our API Gateways (our endpoints) localstack has difficulties deploying again.<br>
 An easy fix will be to restart the docker container for localstack. Don’t forget, that after a restart you need to deploy your service again.</p>
+</section>
+<section id="my-service-is-gone">
+<h2>My Service is gone<a class="headerlink" href="#my-service-is-gone" title="Permalink to this headline">#</a></h2>
+<p>Did you restart localstack? Don’t forget to deploy again</p>
+</section>
+<section id="localstack-logs">
+<h2>Localstack logs<a class="headerlink" href="#localstack-logs" title="Permalink to this headline">#</a></h2>
+<p>you can run this command to see the docker container logs:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker logs -f --tail <span class="m">500</span> <span class="sb">`</span>docker ps <span class="p">|</span>grep localstack <span class="p">|</span>awk <span class="s1">&#39;{print $1}&#39;</span><span class="sb">`</span>
+</pre></div>
+</div>
+<p>(or jsut do <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> grep the id, and run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">-f</span> <span class="pre">--tail</span> <span class="pre">500</span> <span class="pre">&lt;id&gt;</span></code>)</p>
+</section>
+<section id="serverless-function-logs">
+<h2>Serverless Function Logs<a class="headerlink" href="#serverless-function-logs" title="Permalink to this headline">#</a></h2>
+<p>You can run this command to get the logs from your runs:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sls logs --stage <span class="nb">local</span> -f &lt;<span class="k">function</span>-name&gt;
+</pre></div>
+</div>
 </section>
 </section>
 
