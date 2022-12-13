@@ -403,23 +403,26 @@ Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scr
 <h2>Run our client<a class="headerlink" href="#run-our-client" title="Permalink to this headline">#</a></h2>
 <p>create a file called <code class="docutils literal notranslate"><span class="pre">client.py</span></code> and paste this snippet to it</p>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">USER_ID</span> <span class="o">=</span> <span class="s2">&quot;user-1&quot;</span>
+<span class="n">USER_ID</span> <span class="o">=</span> <span class="s2">&quot;user-2&quot;</span>
 <span class="n">USER_NAME</span> <span class="o">=</span> <span class="s2">&quot;my-user&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">get_deployment_url</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">get_deployment_url</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; - &quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s2">&quot;sls info --stage local&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;http&quot;</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
     <span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">raw</span> <span class="k">if</span> <span class="s2">&quot; &quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">raw</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No deployment url found&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">raw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 
 <span class="n">BASE_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">get_deployment_url</span><span class="p">()</span><span class="si">}</span><span class="s2">/users&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">create_user</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">USER_ID</span><span class="p">,</span>
         <span class="s2">&quot;user_name&quot;</span><span class="p">:</span> <span class="n">USER_NAME</span><span class="p">,</span>
@@ -427,12 +430,14 @@ Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scr
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">BASE_URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">404</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kc">None</span>
 
 
-<span class="k">def</span> <span class="nf">get_user</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">USER_ID</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">404</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kc">None</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -450,7 +455,7 @@ Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scr
 It will:</p>
 <ul class="simple">
 <li><p>try to get a user from the api</p></li>
-<li><p>if the user is not present, it will create it and return it value</p></li>
+<li><p>if the user is not present, it will create it and return its value</p></li>
 </ul>
 </section>
 </section>
