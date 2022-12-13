@@ -421,8 +421,8 @@ Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scr
 
 <span class="k">def</span> <span class="nf">create_user</span><span class="p">():</span>
     <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;userId&quot;</span><span class="p">:</span> <span class="n">USER_ID</span><span class="p">,</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">USER_NAME</span><span class="p">,</span>
+        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">USER_ID</span><span class="p">,</span>
+        <span class="s2">&quot;user_name&quot;</span><span class="p">:</span> <span class="n">USER_NAME</span><span class="p">,</span>
     <span class="p">}</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">BASE_URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">404</span><span class="p">:</span>

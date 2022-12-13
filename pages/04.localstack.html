@@ -434,7 +434,7 @@ In a <code class="docutils literal notranslate"><span class="pre">docker-copmose
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker logs -f --tail <span class="m">500</span> <span class="sb">`</span>docker ps <span class="p">|</span>grep localstack <span class="p">|</span>awk <span class="s1">&#39;{print $1}&#39;</span><span class="sb">`</span>
 </pre></div>
 </div>
-<p>(or jsut do <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> grep the id, and run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">-f</span> <span class="pre">--tail</span> <span class="pre">500</span> <span class="pre">&lt;id&gt;</span></code>)</p>
+<p>(or just do <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> grep the id, and run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">-f</span> <span class="pre">--tail</span> <span class="pre">500</span> <span class="pre">&lt;id&gt;</span></code>)</p>
 <section id="serverless-framework-integration-with-localstack">
 <h2>serverless framework integration with localstack<a class="headerlink" href="#serverless-framework-integration-with-localstack" title="Permalink to this headline">#</a></h2>
 <p>One last part before we can deploy our application locally is to configure our up to work with local stack.<br>

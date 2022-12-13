@@ -336,8 +336,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#second-deployment-doesn-t-work">
-   Second deployment doesn’t work
+  <a class="reference internal nav-link" href="#second-deployment-fails-with-weird-errors-e-g-update-failed">
+   Second deployment fails with weird errors (e.g UPDATE FAILED)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -353,6 +353,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#serverless-function-logs">
    Serverless Function Logs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#docker-desktop">
+   Docker Desktop
   </a>
  </li>
 </ul>
@@ -375,8 +380,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#second-deployment-doesn-t-work">
-   Second deployment doesn’t work
+  <a class="reference internal nav-link" href="#second-deployment-fails-with-weird-errors-e-g-update-failed">
+   Second deployment fails with weird errors (e.g UPDATE FAILED)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -394,6 +399,11 @@ title="Print to PDF"
    Serverless Function Logs
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#docker-desktop">
+   Docker Desktop
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -406,8 +416,8 @@ title="Print to PDF"
                 
   <section id="troubleshooting">
 <h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">#</a></h1>
-<section id="second-deployment-doesn-t-work">
-<h2>Second deployment doesn’t work<a class="headerlink" href="#second-deployment-doesn-t-work" title="Permalink to this headline">#</a></h2>
+<section id="second-deployment-fails-with-weird-errors-e-g-update-failed">
+<h2>Second deployment fails with weird errors (e.g UPDATE FAILED)<a class="headerlink" href="#second-deployment-fails-with-weird-errors-e-g-update-failed" title="Permalink to this headline">#</a></h2>
 <p>Sometimes, especially when we change our API Gateways (our endpoints) localstack has difficulties deploying again.<br>
 An easy fix will be to restart the docker container for localstack. Don’t forget, that after a restart you need to deploy your service again.</p>
 </section>
@@ -429,6 +439,10 @@ An easy fix will be to restart the docker container for localstack. Don’t forg
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sls logs --stage <span class="nb">local</span> -f &lt;<span class="k">function</span>-name&gt;
 </pre></div>
 </div>
+</section>
+<section id="docker-desktop">
+<h2>Docker Desktop<a class="headerlink" href="#docker-desktop" title="Permalink to this headline">#</a></h2>
+<p>Sometimes docker desktop doesn’t play nice (especially when it wants to update) so you may need to let it do its thing and move on.</p>
 </section>
 </section>
 
