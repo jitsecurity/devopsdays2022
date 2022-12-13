@@ -1,6 +1,6 @@
 
 ## Troubleshooting
-### Second deployment doesn't work
+### Second deployment fails with weird errors (e.g UPDATE FAILED)
 Sometimes, especially when we change our API Gateways (our endpoints) localstack has difficulties deploying again.<br>
 An easy fix will be to restart the docker container for localstack. Don't forget, that after a restart you need to deploy your service again.
 
@@ -19,3 +19,6 @@ You can run this command to get the logs from your runs:
 ```shell
 sls logs --stage local -f <function-name>
 ```
+
+### Docker Desktop
+Sometimes docker desktop doesn't play nice (especially when it wants to update) so you may need to let it do its thing and move on.
