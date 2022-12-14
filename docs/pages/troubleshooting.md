@@ -22,3 +22,6 @@ sls logs --stage local -f <function-name>
 
 ### Docker Desktop
 Sometimes docker desktop doesn't play nice (especially when it wants to update) so you may need to let it do its thing and move on.
+
+### Deployment fails due to long app name
+Localstack may fail deployment if the app name is too ling.<br> Please make sure to use short names.
