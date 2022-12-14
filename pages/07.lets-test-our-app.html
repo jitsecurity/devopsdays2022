@@ -392,12 +392,23 @@ title="Print to PDF"
 <p>Let’s generate a vritualenv
 installing with pip <br>
 <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">virtualenv</span></code> <br></p>
-<p>create a local <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/">virtualenv</a> in the project’s directory <br>
-<code class="docutils literal notranslate"><span class="pre">virtualenv</span> <span class="pre">venv</span></code><br>
-activate it:<br>
-Unix/Mac: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code> <br>
-Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scripts\activate</span></code> <br></p>
-<p>and run this command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
+<p>create a local <a class="reference external" href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/">virtualenv</a> in the project’s directory <br></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>virtualenv venv
+</pre></div>
+</div>
+<p>activate it:<br>
+Unix/Mac:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> venv/bin/activate
+</pre></div>
+</div>
+<p>Windows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.<span class="se">\v</span>env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+</pre></div>
+</div>
+<p>and run this command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+</div>
 </section>
 <section id="run-our-client">
 <h2>Run our client<a class="headerlink" href="#run-our-client" title="Permalink to this headline">#</a></h2>
