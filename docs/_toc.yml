@@ -13,4 +13,5 @@ chapters:
 - file: pages/08.DynamoDB
 - file: pages/09.github-integration
 - file: pages/10.github-actions
+- file: pages/sample-app
 - file: pages/troubleshooting

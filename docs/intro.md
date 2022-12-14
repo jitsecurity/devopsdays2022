@@ -16,6 +16,7 @@ And I will be assited by these two amazing guys:
 
 Let's have some fun today!
 
+Also, there's a sample app for you to use, if needed right [here](pages/sample-app)
 
 ```{tableofcontents}
 ```
