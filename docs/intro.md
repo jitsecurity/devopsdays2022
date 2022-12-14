@@ -18,5 +18,9 @@ Let's have some fun today!
 
 Also, there's a sample app for you to use, if needed right [here](pages/sample-app)
 
+WiFi creds:<br>
+SSID1: Speaker-DOD2022<br>
+PW: dodlovespeakers!#!<br>
+
 ```{tableofcontents}
 ```
