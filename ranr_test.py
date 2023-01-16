@@ -1,3 +1,3 @@
 import subprocess
 
-subprocess.Popen(['ls'], shell=True)
+a = subprocess.Popen(['ls'], shell=True)
